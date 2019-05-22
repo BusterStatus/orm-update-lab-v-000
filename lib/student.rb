@@ -58,9 +58,16 @@ class Student
     sql = <<-SQL
       SELECT * FROM students WHERE name = ? LIMIT 1
     SQL
+<<<<<<< HEAD
     array = []
     DB[:conn].execute(sql, name).each do |row|
        array << self.new_from_db(row)
+=======
+    
+    DB[:conn].execute(sql, name).map do |row|
+      array = self.new_from_db(row)
+      array[0]
+>>>>>>> 0fe968752ea84df54748dc6e606d3b0dd11751f1
     end
     
     array[0]
